@@ -1,4 +1,12 @@
-import { Notifications, ChevronLeft, ChevronRight, Delete, Edit, Close } from '@mui/icons-material';
+import {
+  Notifications,
+  ChevronLeft,
+  ChevronRight,
+  Delete,
+  Edit,
+  Close,
+  Repeat,
+} from '@mui/icons-material';
 import {
   Alert,
   AlertTitle,
@@ -199,8 +207,9 @@ function App() {
                               overflow: 'hidden',
                             }}
                           >
-                            <Stack direction="row" spacing={1} alignItems="center">
+                            <Stack direction="row" spacing={0.5} alignItems="center">
                               {isNotified && <Notifications fontSize="small" />}
+                              {event.repeat.type !== 'none' && <Repeat fontSize="small" />}
                               <Typography
                                 variant="caption"
                                 noWrap
@@ -286,8 +295,9 @@ function App() {
                                     overflow: 'hidden',
                                   }}
                                 >
-                                  <Stack direction="row" spacing={1} alignItems="center">
+                                  <Stack direction="row" spacing={0.5} alignItems="center">
                                     {isNotified && <Notifications fontSize="small" />}
+                                    {event.repeat.type !== 'none' && <Repeat fontSize="small" />}
                                     <Typography
                                       variant="caption"
                                       noWrap
@@ -437,8 +447,7 @@ function App() {
             </Select>
           </FormControl>
 
-          {/* ! 반복은 8주차 과제에 포함됩니다. 구현하고 싶어도 참아주세요~ */}
-          {/* {isRepeating && (
+          {isRepeating && (
             <Stack spacing={2}>
               <FormControl fullWidth>
                 <FormLabel>반복 유형</FormLabel>
@@ -475,7 +484,7 @@ function App() {
                 </FormControl>
               </Stack>
             </Stack>
-          )} */}
+          )}
 
           <Button
             data-testid="event-submit-button"
@@ -541,6 +550,7 @@ function App() {
                   <Stack>
                     <Stack direction="row" spacing={1} alignItems="center">
                       {notifiedEvents.includes(event.id) && <Notifications color="error" />}
+                      {event.repeat.type !== 'none' && <Repeat />}
                       <Typography
                         fontWeight={notifiedEvents.includes(event.id) ? 'bold' : 'normal'}
                         color={notifiedEvents.includes(event.id) ? 'error' : 'inherit'}
@@ -596,9 +606,12 @@ function App() {
           <DialogContentText>
             다음 일정과 겹칩니다:
             {overlappingEvents.map((event) => (
-              <Typography key={event.id}>
-                {event.title} ({event.date} {event.startTime}-{event.endTime})
-              </Typography>
+              <Stack key={event.id} direction="row" spacing={1} alignItems="center">
+                {event.repeat.type !== 'none' && <Repeat fontSize="small" />}
+                <Typography>
+                  {event.title} ({event.date} {event.startTime}-{event.endTime})
+                </Typography>
+              </Stack>
             ))}
             계속 진행하시겠습니까?
           </DialogContentText>

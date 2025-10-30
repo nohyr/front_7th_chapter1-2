@@ -75,16 +75,11 @@ app.delete('/api/events/:id', async (req, res) => {
 
 app.post('/api/events-list', async (req, res) => {
   const events = await getEvents();
-  const repeatId = randomUUID();
+  // 프론트엔드에서 이미 repeat.id를 생성했으므로 그대로 사용
   const newEvents = req.body.events.map((event) => {
-    const isRepeatEvent = event.repeat.type !== 'none';
     return {
-      id: randomUUID(),
       ...event,
-      repeat: {
-        ...event.repeat,
-        id: isRepeatEvent ? repeatId : undefined,
-      },
+      id: randomUUID(), // 각 이벤트에 고유 id만 할당
     };
   });
 
