@@ -43,8 +43,7 @@ import { useEventForm } from './hooks/useEventForm.ts';
 import { useEventOperations } from './hooks/useEventOperations.ts';
 import { useNotifications } from './hooks/useNotifications.ts';
 import { useSearch } from './hooks/useSearch.ts';
-// import { Event, EventForm, RepeatType } from './types';
-import { Event, EventForm } from './types';
+import { Event, EventForm, RepeatType } from './types';
 import {
   formatDate,
   formatMonth,
@@ -798,9 +797,7 @@ function App() {
       <Dialog open={isRepeatEditDialogOpen} onClose={() => setIsRepeatEditDialogOpen(false)}>
         <DialogTitle>반복 일정 수정</DialogTitle>
         <DialogContent>
-          <DialogContentText>
-            이 일정은 반복 일정입니다. 어떻게 수정하시겠습니까?
-          </DialogContentText>
+          <DialogContentText>이 일정은 반복 일정입니다. 어떻게 수정하시겠습니까?</DialogContentText>
         </DialogContent>
         <DialogActions>
           <Button onClick={() => setIsRepeatEditDialogOpen(false)}>취소</Button>
@@ -814,15 +811,10 @@ function App() {
       </Dialog>
 
       {/* 반복 일정 삭제 다이얼로그 */}
-      <Dialog
-        open={isRepeatDeleteDialogOpen}
-        onClose={() => setIsRepeatDeleteDialogOpen(false)}
-      >
+      <Dialog open={isRepeatDeleteDialogOpen} onClose={() => setIsRepeatDeleteDialogOpen(false)}>
         <DialogTitle>반복 일정 삭제</DialogTitle>
         <DialogContent>
-          <DialogContentText>
-            이 일정은 반복 일정입니다. 어떻게 삭제하시겠습니까?
-          </DialogContentText>
+          <DialogContentText>이 일정은 반복 일정입니다. 어떻게 삭제하시겠습니까?</DialogContentText>
         </DialogContent>
         <DialogActions>
           <Button onClick={() => setIsRepeatDeleteDialogOpen(false)}>취소</Button>
