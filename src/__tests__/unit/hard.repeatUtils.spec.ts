@@ -1,6 +1,6 @@
 import { describe, it, expect, beforeEach, vi } from 'vitest';
 
-import { Event, EventForm } from '../../types';
+import { EventForm } from '../../types';
 import { generateRecurringEvents, isLeapYear } from '../../utils/repeatUtils';
 
 /**

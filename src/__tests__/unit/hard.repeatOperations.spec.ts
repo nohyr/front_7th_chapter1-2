@@ -1,7 +1,7 @@
 import { http, HttpResponse } from 'msw';
 
-import { Event } from '../../types';
 import { server } from '../../setupTests';
+import { Event } from '../../types';
 
 /**
  * 반복 일정 단일/전체 수정 및 삭제 API 테스트
@@ -50,7 +50,7 @@ describe('반복 일정 수정/삭제 API', () => {
       let updatedEvent: Event | null = null;
 
       server.use(
-        http.put('/api/events/:id', async ({ params, request }) => {
+        http.put('/api/events/:id', async ({ request }) => {
           const updates = (await request.json()) as Partial<Event>;
           updatedEvent = { ...event, ...updates };
           return HttpResponse.json(updatedEvent);
